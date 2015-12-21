@@ -64,5 +64,12 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainBall.moveMainBallWhenTouchAt(x, y);
+        moveBalls();
+    }
+
+    private void moveBalls() {
+        for(EnemyBall ball: enemyBalls) {
+            ball.moveOneStep();
+        }
     }
 }
