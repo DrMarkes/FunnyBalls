@@ -25,10 +25,13 @@ public class GameManager {
     }
 
     private void initEnemyBalls() {
-        enemyBalls = new ArrayList<EnemyBall>();
+        SimpleBall mainBallArea = mainBall.getBallArea();
+        enemyBalls = new ArrayList<>();
         for (int i = 0; i < MAX_ENEMYBALLS; i++) {
             EnemyBall enemyBall;
-            enemyBall = EnemyBall.getRandomBall();
+            do {
+                enemyBall = EnemyBall.getRandomBall();
+            } while (enemyBall.isIntersect(mainBallArea));
             enemyBalls.add(enemyBall);
         }
         calculateAndSetBallsColor();
