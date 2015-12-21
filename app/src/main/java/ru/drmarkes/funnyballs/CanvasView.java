@@ -12,15 +12,18 @@ import android.view.WindowManager;
 /**
  * Created by Андрей on 17.12.2015.
  */
-public class CanvasView extends View {
+class CanvasView extends View implements ICanvasView {
     private static int width;
     private static int height;
+    private Paint paint;
     private GameManager gameManager;
+    private Canvas canvas;
 
     public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initWidthAndHeight(context);
         gameManager = new GameManager(this, width, height);
+        initPaint();
     }
 
     private void initWidthAndHeight(Context context) {
@@ -35,6 +38,18 @@ public class CanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        gameManager.onDraw(canvas);
+        this.canvas = canvas;
+        gameManager.onDraw();
+    }
+
+    private void initPaint() {
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
+    }
+
+    @Override
+    public void drawBall(MainBall mainBall) {
+        canvas.drawCircle(mainBall.getX(), mainBall.getY(), mainBall.getRadius(), paint);
     }
 }
