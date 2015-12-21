@@ -1,14 +1,18 @@
 package ru.drmarkes.funnyballs;
 
+import android.graphics.Color;
+
 /**
  * Created by Андрей on 17.12.2015.
  */
 public class MainBall extends SimpleBall {
     private static final int MAIN_SPEED = 30;
     private static final int INIT_RADIUS = 50;
+    private static final int OUR_COLOR = Color.BLUE;
 
     public MainBall(int x, int y) {
         super(x, y, INIT_RADIUS);
+        setColor(OUR_COLOR);
     }
 
     public void moveMainBallWhenTouchAt(int x1, int y1) {

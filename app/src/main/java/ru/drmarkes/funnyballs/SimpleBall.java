@@ -5,6 +5,7 @@ package ru.drmarkes.funnyballs;
  */
 public class SimpleBall {
     protected int x, y, radius;
+    private int color;
 
     public SimpleBall(int x, int y, int radius) {
         this.x = x;
@@ -22,5 +23,13 @@ public class SimpleBall {
 
     public int getRadius() {
         return radius;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

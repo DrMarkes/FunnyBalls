@@ -1,5 +1,7 @@
 package ru.drmarkes.funnyballs;
 
+import android.graphics.Color;
+
 import java.util.Random;
 
 /**
@@ -9,7 +11,8 @@ public class EnemyBall extends SimpleBall{
 
 
     private static final int FROM_RADIUS = 10;
-    private static int TO_RADIUS = 110;
+    private static final int TO_RADIUS = 110;
+    private static final int ENEMY_COLOR = Color.RED;
 
     public EnemyBall(int x, int y, int radius) {
         super(x, y, radius);
@@ -21,6 +24,7 @@ public class EnemyBall extends SimpleBall{
         int y = random.nextInt(GameManager.getHeight());
         int radius = FROM_RADIUS + random.nextInt(TO_RADIUS - FROM_RADIUS);
         EnemyBall enemyBall = new EnemyBall(x, y, radius);
+        enemyBall.setColor(ENEMY_COLOR);
         return enemyBall;
     }
 }
