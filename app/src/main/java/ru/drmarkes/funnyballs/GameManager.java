@@ -19,11 +19,23 @@ public class GameManager {
         initMainBall();
     }
 
+    public static int getWidth() {
+        return width;
+    }
+
+    public static int getHeight() {
+        return height;
+    }
+
     private void initMainBall() {
         mainBall = new MainBall(width / 2, height / 2);
     }
 
     public void onDraw() {
         canvasView.drawBall(mainBall);
+    }
+
+    public void onTouchEvent(int x, int y) {
+        mainBall.moveMainBallWhenTouchAt(x, y);
     }
 }
