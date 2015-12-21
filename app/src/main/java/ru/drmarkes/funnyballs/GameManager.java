@@ -31,6 +31,13 @@ public class GameManager {
             enemyBall = EnemyBall.getRandomBall();
             enemyBalls.add(enemyBall);
         }
+        calculateAndSetBallsColor();
+    }
+
+    private void calculateAndSetBallsColor() {
+        for(EnemyBall ball: enemyBalls) {
+            ball.setEnemyOrFoodColorDependsOn(mainBall);
+        }
     }
 
     public static int getWidth() {
