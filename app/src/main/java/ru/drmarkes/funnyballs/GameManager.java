@@ -8,11 +8,11 @@ import android.graphics.Paint;
  */
 public class GameManager {
     private MainBall mainBall;
-    private CanvasView canvasView;
+    private ICanvasView canvasView;
     private static int width;
     private static int height;
 
-    public GameManager(CanvasView canvasView, int width, int height) {
+    public GameManager(ICanvasView canvasView, int width, int height) {
         this.canvasView = canvasView;
         GameManager.width = width;
         GameManager.height = height;

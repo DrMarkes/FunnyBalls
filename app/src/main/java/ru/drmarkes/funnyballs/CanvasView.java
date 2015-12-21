@@ -50,8 +50,8 @@ class CanvasView extends View implements ICanvasView {
     }
 
     @Override
-    public void drawBall(MainBall mainBall) {
-        canvas.drawCircle(mainBall.getX(), mainBall.getY(), mainBall.getRadius(), paint);
+    public void drawBall(SimpleBall ball) {
+        canvas.drawCircle(ball.getX(), ball.getY(), ball.getRadius(), paint);
     }
 
     @Override
