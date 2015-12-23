@@ -21,5 +21,9 @@ public class MainBall extends SimpleBall {
         x += dx;
         y += dy;
     }
+
+    public void initRadius() {
+        this.radius = INIT_RADIUS;
+    }
 }
 

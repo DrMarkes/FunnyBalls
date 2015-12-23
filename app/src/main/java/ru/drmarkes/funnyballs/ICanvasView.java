@@ -5,4 +5,6 @@ package ru.drmarkes.funnyballs;
  */
 public interface ICanvasView {
     void drawBall(SimpleBall ball);
+
+    void redraw();
 }

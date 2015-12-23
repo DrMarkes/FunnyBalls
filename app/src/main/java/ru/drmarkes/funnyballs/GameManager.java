@@ -64,8 +64,24 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainBall.moveMainBallWhenTouchAt(x, y);
+        checkCollision();
         moveBalls();
     }
+
+    private void checkCollision() {
+        for(EnemyBall ball: enemyBalls) {
+            if(mainBall.isIntersect(ball)) {
+                gameOver();
+            }
+        }
+    }
+
+    private void gameOver() {
+        mainBall.initRadius();
+        initEnemyBalls();
+        canvasView.redraw();
+    }
+
 
     private void moveBalls() {
         for(EnemyBall ball: enemyBalls) {
