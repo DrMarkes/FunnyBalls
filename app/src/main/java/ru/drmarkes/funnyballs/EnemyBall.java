@@ -42,7 +42,7 @@ public class EnemyBall extends SimpleBall{
         }
     }
 
-    private boolean isSmallerThan(SimpleBall ball) {
+    public boolean isSmallerThan(SimpleBall ball) {
         if(this.getRadius() < ball.getRadius()) {
             return true;
         }

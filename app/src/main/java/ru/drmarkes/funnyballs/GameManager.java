@@ -69,10 +69,25 @@ public class GameManager {
     }
 
     private void checkCollision() {
+        SimpleBall ballForDel = null;
         for(EnemyBall ball: enemyBalls) {
             if(mainBall.isIntersect(ball)) {
-                gameOver();
+                if(ball.isSmallerThan(mainBall)) {
+                    mainBall.growRadius(ball);
+                    ballForDel = ball;
+                    calculateAndSetBallsColor();
+                    break;
+                } else {
+                    gameOver();
+                    return;
+                }
             }
+        }
+        if(ballForDel != null) {
+            enemyBalls.remove(ballForDel);
+        }
+        if(enemyBalls.isEmpty()) {
+            gameOver();
         }
     }
 

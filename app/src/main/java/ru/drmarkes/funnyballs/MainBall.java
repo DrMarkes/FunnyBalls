@@ -25,5 +25,9 @@ public class MainBall extends SimpleBall {
     public void initRadius() {
         this.radius = INIT_RADIUS;
     }
+
+    public void growRadius(SimpleBall ball) {
+        radius = (int) Math.sqrt(Math.pow(radius, 2) + Math.pow(ball.radius, 2));
+    }
 }
 
