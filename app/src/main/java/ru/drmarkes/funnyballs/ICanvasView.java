@@ -7,4 +7,6 @@ public interface ICanvasView {
     void drawBall(SimpleBall ball);
 
     void redraw();
+
+    void showMessage(String text);
 }

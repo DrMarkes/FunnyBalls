@@ -78,7 +78,7 @@ public class GameManager {
                     calculateAndSetBallsColor();
                     break;
                 } else {
-                    gameOver();
+                    gameOver("YOU LOSE!");
                     return;
                 }
             }
@@ -87,11 +87,12 @@ public class GameManager {
             enemyBalls.remove(ballForDel);
         }
         if(enemyBalls.isEmpty()) {
-            gameOver();
+            gameOver("YOU WIN!");
         }
     }
 
-    private void gameOver() {
+    private void gameOver(String text) {
+        canvasView.showMessage(text);
         mainBall.initRadius();
         initEnemyBalls();
         canvasView.redraw();
