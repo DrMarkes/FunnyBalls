@@ -21,5 +21,13 @@ public class MainBall extends SimpleBall {
         x += dx;
         y += dy;
     }
+
+    public void initRadius() {
+        this.radius = GameManager.recalculateRadius(INIT_RADIUS);
+    }
+
+    public void growRadius(SimpleBall ball) {
+        radius = (int) Math.sqrt(Math.pow(radius, 2) + Math.pow(ball.radius, 2));
+    }
 }
 

@@ -25,11 +25,22 @@ public class GameManager {
     }
 
     private void initEnemyBalls() {
-        enemyBalls = new ArrayList<EnemyBall>();
+        SimpleBall mainBallArea = mainBall.getBallArea();
+        enemyBalls = new ArrayList<>();
         for (int i = 0; i < MAX_ENEMYBALLS; i++) {
             EnemyBall enemyBall;
-            enemyBall = EnemyBall.getRandomBall();
+            do {
+                enemyBall = EnemyBall.getRandomBall();
+                enemyBall.setRadius(recalculateRadius(enemyBall.getRadius()));
+            } while (enemyBall.isIntersect(mainBallArea));
             enemyBalls.add(enemyBall);
+        }
+        calculateAndSetBallsColor();
+    }
+
+    private void calculateAndSetBallsColor() {
+        for(EnemyBall ball: enemyBalls) {
+            ball.setEnemyOrFoodColorDependsOn(mainBall);
         }
     }
 
@@ -43,6 +54,7 @@ public class GameManager {
 
     private void initMainBall() {
         mainBall = new MainBall(width / 2, height / 2);
+        mainBall.setRadius(recalculateRadius(mainBall.getRadius()));
     }
 
     public void onDraw() {
@@ -54,5 +66,48 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainBall.moveMainBallWhenTouchAt(x, y);
+        checkCollision();
+        moveBalls();
+    }
+
+    private void checkCollision() {
+        SimpleBall ballForDel = null;
+        for(EnemyBall ball: enemyBalls) {
+            if(mainBall.isIntersect(ball)) {
+                if(ball.isSmallerThan(mainBall)) {
+                    mainBall.growRadius(ball);
+                    ballForDel = ball;
+                    calculateAndSetBallsColor();
+                    break;
+                } else {
+                    gameOver("YOU LOSE!");
+                    return;
+                }
+            }
+        }
+        if(ballForDel != null) {
+            enemyBalls.remove(ballForDel);
+        }
+        if(enemyBalls.isEmpty()) {
+            gameOver("YOU WIN!");
+        }
+    }
+
+    private void gameOver(String text) {
+        canvasView.showMessage(text);
+        mainBall.initRadius();
+        initEnemyBalls();
+        canvasView.redraw();
+    }
+
+
+    private void moveBalls() {
+        for(EnemyBall ball: enemyBalls) {
+            ball.moveOneStep();
+        }
+    }
+
+    public static int recalculateRadius(int radius) {
+        return radius * (width < height ? width : height) / 768;
     }
 }

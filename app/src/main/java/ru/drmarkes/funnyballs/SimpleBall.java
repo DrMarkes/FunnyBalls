@@ -25,11 +25,23 @@ public class SimpleBall {
         return radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     public int getColor() {
         return color;
     }
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public SimpleBall getBallArea() {
+        return new SimpleBall(x, y, radius * 3);
+    }
+
+    public boolean isIntersect(SimpleBall ball) {
+        return radius + ball.radius >= Math.sqrt(Math.pow(x - ball.x, 2) + Math.pow(y - ball.y, 2));
     }
 }
