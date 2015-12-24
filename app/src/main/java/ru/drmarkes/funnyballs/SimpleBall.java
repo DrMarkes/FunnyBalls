@@ -25,6 +25,10 @@ public class SimpleBall {
         return radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     public int getColor() {
         return color;
     }

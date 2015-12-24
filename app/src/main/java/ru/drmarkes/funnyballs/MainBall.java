@@ -23,7 +23,7 @@ public class MainBall extends SimpleBall {
     }
 
     public void initRadius() {
-        this.radius = INIT_RADIUS;
+        this.radius = GameManager.recalculateRadius(INIT_RADIUS);
     }
 
     public void growRadius(SimpleBall ball) {

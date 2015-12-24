@@ -84,8 +84,7 @@ class CanvasView extends View implements ICanvasView {
         return  true;
     }
 
-    // Todo HomeWork
-    //public static int recalculateRadius(int radius) {
-    //    return radius * 768 / width < height ? width : height;
-    //}
+    public static int recalculateRadius(int radius) {
+        return radius * (width < height ? width : height) / 768;
+    }
 }

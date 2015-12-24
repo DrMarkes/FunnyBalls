@@ -31,6 +31,7 @@ public class GameManager {
             EnemyBall enemyBall;
             do {
                 enemyBall = EnemyBall.getRandomBall();
+                enemyBall.setRadius(recalculateRadius(enemyBall.getRadius()));
             } while (enemyBall.isIntersect(mainBallArea));
             enemyBalls.add(enemyBall);
         }
@@ -53,6 +54,7 @@ public class GameManager {
 
     private void initMainBall() {
         mainBall = new MainBall(width / 2, height / 2);
+        mainBall.setRadius(recalculateRadius(mainBall.getRadius()));
     }
 
     public void onDraw() {
@@ -103,5 +105,9 @@ public class GameManager {
         for(EnemyBall ball: enemyBalls) {
             ball.moveOneStep();
         }
+    }
+
+    public static int recalculateRadius(int radius) {
+        return radius * (width < height ? width : height) / 768;
     }
 }
